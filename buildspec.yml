@@ -1,4 +1,4 @@
-```yaml
+  ```yaml
 version: 0.2
 
 phases:
@@ -7,8 +7,9 @@ phases:
       - echo Logging in to Amazon ECR
       - AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
       - AWS_REGION=$AWS_DEFAULT_REGION
-      - ECR_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/aws-cicd-lab
-      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_URI
+      - ECR_REGISTRY=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+      - ECR_URI=$ECR_REGISTRY/aws-cicd-lab
+      - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECR_REGISTRY
 
   build:
     commands:

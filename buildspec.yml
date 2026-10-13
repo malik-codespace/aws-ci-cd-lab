@@ -1,4 +1,4 @@
-  ```yaml
+
 version: 0.2
 
 phases:
@@ -22,4 +22,3 @@ phases:
       - echo Pushing Docker image to ECR
       - docker push $ECR_URI:latest
       - echo Build and push completed!
-```
